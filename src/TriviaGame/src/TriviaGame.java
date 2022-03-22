@@ -1,21 +1,33 @@
 import java.util.*;
-import java.lang.reflect.Array;
+import javax.swing.*;
 
 public class TriviaGame {
-	//Tile Array - board
 	Scanner sc = new Scanner(System.in);
 	Random rand = new Random();
-	ArrayList<Question> easyQuestions;
-	ArrayList<Question> mediumQuestions;
-	ArrayList<Question> hardQuestions;
+	ArrayList<Question> easyQuestions; //0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
+	ArrayList<Question> mediumQuestions; //0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
+	ArrayList<Question> hardQuestions; //0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
 	ArrayList<Question> finalQuestions;
-	Tile[][] board;
+	Tile[][] board = new Tile[6][6];
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		//JFrame
+		JFrame frame = new JFrame();
+		frame.setSize(600,600);
+		frame.setTitle("Spanish Trivia Game");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.setVisible(true);
 	}
 	
 	public void setQuestions() {}
+	
+	public void drawBoard() {
+		for(int i=0; i<6; i++) {
+			for(int j=0;j<6;j++) {
+				board[i][j] = new Tile("", "");
+			}
+		} //- this may not work
+	}
 
 }
