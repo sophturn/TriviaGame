@@ -1,5 +1,6 @@
+//Encompasses both Translation and Conjugation questions.
 
-public abstract class Question {
+public class Question {
 	boolean correct = false;
 	String answer, question, correctAnswer;
 	public Question() {}
@@ -8,8 +9,16 @@ public abstract class Question {
 		//display the question (String question)
 	}
 	
+	public void setQuestion(String desc) {
+		question = desc;
+	}
+	
 	public void setAnswer(String answ) {
 		correctAnswer = answ;
+	}
+	
+	public void Response(String res) {
+		answer = res;
 	}
 	
 	public boolean checkAnswer() {

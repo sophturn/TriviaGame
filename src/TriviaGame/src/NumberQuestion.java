@@ -3,14 +3,14 @@ public class NumberQuestion extends Question{
 	int response;
 	int corAns;
 	
-	public NumberQuestion(String desc, int ans) {
-//		question = desc;
-//		response = ans;
-	}
+	public NumberQuestion() {}
 	
 	public void setAnswer(String answ) {
-		response = Integer.parseInt(answ);
-		super.setAnswer(answ);
+		corAns = Integer.parseInt(answ);
+	}
+	
+	public void Response(String res) {
+		response = Integer.parseInt(res);
 	}
 	
 	public boolean checkAnswer() {

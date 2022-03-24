@@ -2,10 +2,7 @@
 public class MultipleChoiceQuestion extends Question{
 	char response, corAns;
 	String choice;
-	public MultipleChoiceQuestion(String desc, char ans, char cAns) {
-		question = desc;
-		response = ans;
-		corAns = cAns;
+	public MultipleChoiceQuestion() {
 	}
 	
 	public void addChoice(String ch) {
@@ -13,11 +10,18 @@ public class MultipleChoiceQuestion extends Question{
 		question += "\n" +choice;
 	}
 	
-	public void display() {} //finish this one
+	public void display() {
+		//display question (super.display();)
+		//display answer choices
+	} //finish this one
 	
 	public void setAnswer(String answ) {
-		response = answ.charAt(0);
+		corAns = answ.charAt(0);
 		super.setAnswer(answ);
+	}
+	
+	public void Response(String res) {
+		response = res.charAt(1);
 	}
 	
 	public boolean checkAnswer() {
