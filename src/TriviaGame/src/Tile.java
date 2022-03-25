@@ -1,5 +1,4 @@
 import java.awt.*;
-import javax.swing.*;
 
 public class Tile {
 	String level, questionType, color;

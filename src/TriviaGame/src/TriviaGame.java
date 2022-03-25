@@ -2,6 +2,7 @@ import java.util.*;
 import javax.swing.*;
 import java.io.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class TriviaGame {
 	Scanner in = new Scanner(System.in);
@@ -39,30 +40,36 @@ public class TriviaGame {
 		frame.setSize(615, 638);
 		frame.setTitle("Spanish Trivia Game");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		frame.setVisible(true);
+		
 		// JPanel Board
 		JPanel base = new JPanel();
 		base.setBounds(0, 0, 600, 600);
 		base.setLayout(new GridLayout(6, 6));
-
+		frame.add(base);
+		ButtonClickListener listener = new ButtonClickListener();
 		JButton[][] board = new JButton[6][6];
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
 				if (i == 0 || j == 0 || i == 5 || j == 5) {
 					board[i][j] = new JButton();
 					board[i][j].setBackground(Color.GREEN);
+					board[i][j].addActionListener(listener);
 					base.add(board[i][j]);
 				} else if (i == 1 || j == 1 || i == 4 || j == 4) {
 					board[i][j] = new JButton();
 					board[i][j].setBackground(Color.YELLOW);
+					board[i][j].addActionListener(listener);
 					base.add(board[i][j]);
 				} else if (i == 2 || j == 2 || i == 3) {
 					board[i][j] = new JButton();
 					board[i][j].setBackground(Color.RED);
+					board[i][j].addActionListener(listener);
 					base.add(board[i][j]);
 				}
 			}
 		}
+		//Setting text for the Buttons
 		board[0][0].setText("Translate");
 		board[4][0].setText("Translate");
 		board[0][4].setText("Translate");
@@ -109,11 +116,10 @@ public class TriviaGame {
 //		end.setBackground(Color.PINK);
 //		fin.add(end);
 
-		boardComponent component = new boardComponent();
-		frame.add(base);
-		frame.add(component);
-
-		frame.setVisible(true);
+//		boardComponent component = new boardComponent();
+//		frame.add(component);
+		
+		
 	}
 
 }
