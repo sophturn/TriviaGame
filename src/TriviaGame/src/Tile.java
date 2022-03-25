@@ -26,8 +26,8 @@ public class Tile {
 		g2.draw(square);
 	}
 	
-//	public void setQType(String qT) {
-//		questionType = qT;
-//	}
+	public void setQType(String qT) {
+		questionType = qT;
+	}
 
 }
