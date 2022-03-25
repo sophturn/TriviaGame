@@ -1,4 +1,5 @@
 import java.awt.*;
+import javax.swing.*;
 
 public class Tile {
 	String level, questionType, color;
@@ -24,5 +25,9 @@ public class Tile {
 		g2.setColor(Color.BLACK);
 		g2.draw(square);
 	}
+	
+//	public void setQType(String qT) {
+//		questionType = qT;
+//	}
 
 }

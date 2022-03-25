@@ -65,7 +65,6 @@ public class TriviaGame {
 		boardComponent component = new boardComponent();
 		frame.add(component);
 		
-		
 		frame.setVisible(true);
 	}	
 

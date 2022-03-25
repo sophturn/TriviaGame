@@ -22,7 +22,6 @@ public class boardComponent extends JComponent {
 		}
 		Tile fin = new Tile("final", "final");
 		fin.draw(g2, 251, 252, 100, 100, "pink");
-
 	}
 
 }
