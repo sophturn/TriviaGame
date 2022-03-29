@@ -15,13 +15,12 @@ public class MultipleChoiceQuestion extends Question{
 		//display answer choices
 	} //finish this one
 	
-	public void setAnswer(String answ) {
-		corAns = answ.charAt(0);
-		super.setAnswer(answ);
+	public void setAnswer(char answ) {
+		corAns = answ;
 	}
 	
-	public void Response(String res) {
-		response = res.charAt(1);
+	public void Response(char res) {
+		response = res;
 	}
 	
 	public boolean checkAnswer() {

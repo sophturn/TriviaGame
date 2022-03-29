@@ -5,12 +5,12 @@ public class NumberQuestion extends Question{
 	
 	public NumberQuestion() {}
 	
-	public void setAnswer(String answ) {
-		corAns = Integer.parseInt(answ);
+	public void setAnswer(int answ) {
+		corAns = answ;
 	}
 	
-	public void Response(String res) {
-		response = Integer.parseInt(res);
+	public void Response(int res) {
+		response = res;
 	}
 	
 	public boolean checkAnswer() {

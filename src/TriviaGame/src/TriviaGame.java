@@ -11,29 +11,46 @@ public class TriviaGame {
 	ArrayList<Question> mediumQuestions; // 0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
 	ArrayList<Question> hardQuestions; // 0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
 	ArrayList<Question> finalQuestions;
+	String asking;
 
 	public static void main(String[] args) throws FileNotFoundException {
 //		/* Lines 1-40 hold easy questions
 //		 * Lines 41-80 hold medium questions
 //		 * Lines 81-120 hold hard questions
 //		 * Lines 121-130 hold final questions*/
-//		File questions = new File("questions.txt");
-//		Scanner sc = new Scanner(questions); //Why?
-//		System.out.print(sc.next());
-//		while(sc.hasNextLine()) {
-//			for(int i=1; i<40;i++) {
-//				//easyQuestions<i> = sc.nextLine();
-//			}
-//			for(int i=40; i<80;i++) {
-//				//mediumQuestions<i> = sc.nextLine();
-//			}
-//			for(int i=80; i<120;i++) {
-//				//hardQuestions<i> = sc.nextLine();
-//			} for(int i=120; i<130;i++) {
-//				//easyQuestions<i> = sc.nextLine();
-//			}
-//		}
-//		sc.close();
+		File questions = new File("questions.txt");
+		Scanner quesScan = new Scanner(questions); //Why?
+		System.out.print(quesScan.next());
+		while(quesScan.hasNextLine()) {
+			for(int i=1; i<40;i++) {
+				//easyQuestions<i>.setQuestion(sc.nextLine());
+			}
+			for(int i=40; i<80;i++) {
+				//mediumQuestions<i>.setQuestion(sc.nextLine());
+			}
+			for(int i=80; i<120;i++) {
+				//hardQuestions<i>.setQuestion(sc.nextLine());
+			} for(int i=120; i<130;i++) {
+				//finalQuestions<i>.setQuestion(sc.nextLine());
+			}
+		}
+		//quesScan.close();
+		
+		File answers = new File("answers.txt");
+		Scanner ansScan = new Scanner(answers);
+		while(ansScan.hasNextLine()) {
+			for(int i=1; i<40;i++) {
+				//easyQuestions<i>.setAnswer(sc.nextLine());
+			}
+			for(int i=40; i<80;i++) {
+				//mediumQuestions<i>.setQuestion(sc.nextLine());
+			}
+			for(int i=80; i<120;i++) {
+				//hardQuestions<i>.setQuestion(sc.nextLine());
+			} for(int i=120; i<130;i++) {
+				//finalQuestions<i>.setQuestion(sc.nextLine());
+			}
+		}
 
 		// JFrame
 		JFrame frame = new JFrame();
@@ -42,6 +59,16 @@ public class TriviaGame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
+		//JPanel Instructions
+		JPanel instructions = new JPanel();
+		instructions.setBounds(0,0,600,600);
+		instructions.setLayout(new BorderLayout());
+		
+		//JPanel Question
+		JPanel quest = new JPanel();
+		quest.setBounds(0,0,600,600);
+		quest.setLayout(new BorderLayout());
+
 		// JPanel Board
 		JPanel base = new JPanel();
 		base.setBounds(0, 0, 600, 600);
@@ -69,7 +96,7 @@ public class TriviaGame {
 				}
 			}
 		}
-		//Setting text for the Buttons
+		// Setting text for the Buttons
 		board[0][0].setText("Translate");
 		board[4][0].setText("Translate");
 		board[0][4].setText("Translate");
@@ -118,8 +145,11 @@ public class TriviaGame {
 
 //		boardComponent component = new boardComponent();
 //		frame.add(component);
-		
-		
+
+	}
+	
+	public String askQuestion() {
+		return asking;
 	}
 
 }
