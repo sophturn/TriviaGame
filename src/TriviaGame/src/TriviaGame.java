@@ -126,8 +126,7 @@ public class TriviaGame {
 		instructions.add(instruct);
 //		 instructions.add(instructWords, BorderLayout.CENTER);
 //		 instructions.add(instructWCont, BorderLayout.SOUTH);
-
-		frame.add(instructions);
+		//frame.add(instructions);
 
 		// JPanel Question
 		JTextField questionField = new JTextField(100);
@@ -142,25 +141,27 @@ public class TriviaGame {
 		JPanel base = new JPanel();
 		base.setBounds(0, 0, 600, 600);
 		base.setLayout(new GridLayout(6, 6));
-		// frame.add(base);
-		ButtonClickListener listener = new ButtonClickListener();
+		frame.add(base);
+		ButtonClickListener easyListener = new ButtonClickListener();
+		ButtonClickListener mediumListener = new ButtonClickListener();
+		ButtonClickListener hardListener = new ButtonClickListener();
 		JButton[][] board = new JButton[6][6];
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
 				if (i == 0 || j == 0 || i == 5 || j == 5) {
 					board[i][j] = new JButton();
 					board[i][j].setBackground(Color.GREEN);
-					board[i][j].addActionListener(listener);
+					board[i][j].addActionListener(easyListener);
 					base.add(board[i][j]);
 				} else if (i == 1 || j == 1 || i == 4 || j == 4) {
 					board[i][j] = new JButton();
 					board[i][j].setBackground(Color.YELLOW);
-					board[i][j].addActionListener(listener);
+					board[i][j].addActionListener(mediumListener);
 					base.add(board[i][j]);
 				} else if (i == 2 || j == 2 || i == 3) {
 					board[i][j] = new JButton();
 					board[i][j].setBackground(Color.RED);
-					board[i][j].addActionListener(listener);
+					board[i][j].addActionListener(hardListener);
 					base.add(board[i][j]);
 				}
 			}
@@ -219,7 +220,6 @@ public class TriviaGame {
 
 	public String askQuestion() {
 		int quesNum = rand.nextInt(10);
-		
 		return asking;
 	}
 

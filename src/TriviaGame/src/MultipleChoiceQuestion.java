@@ -10,13 +10,15 @@ public class MultipleChoiceQuestion extends Question{
 		question += "\n" +choice;
 	}
 	
-	public void display() {
+	public String display(String ques) {
 		//display question (super.display();)
 		//display answer choices
+		question = ques;
+		return question;
 	} //finish this one
 	
-	public void setAnswer(char answ) {
-		corAns = answ;
+	public void setAnswer(String answ) {
+		corAns = answ.charAt(0);
 	}
 	
 	public void Response(char res) {

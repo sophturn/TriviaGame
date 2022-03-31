@@ -5,8 +5,8 @@ public class NumberQuestion extends Question{
 	
 	public NumberQuestion() {}
 	
-	public void setAnswer(int answ) {
-		corAns = answ;
+	public void setAnswer(String answ) {
+		corAns = Integer.parseInt(answ);
 	}
 	
 	public void Response(int res) {

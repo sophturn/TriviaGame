@@ -2,11 +2,15 @@
 
 public class Question {
 	boolean correct = false;
-	String answer, question, correctAnswer;
+	static String answer, question, correctAnswer;
 	public Question() {}
 	
-	public void display() {
-		//display the question (String question)
+	public static String display() {
+		return question;
+	}
+	
+	public String getQuestion() {
+		return question;
 	}
 	
 	public void setQuestion(String desc) {
