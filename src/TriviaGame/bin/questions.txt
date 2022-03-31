@@ -20,7 +20,7 @@ Sun
 School
 Los gatos son _____.
 El es _____.
-¿De qué color es el nieve?
+¿De qué color es la nieve?
 ¿Dónde está el cerebro?
 Ella es _____. 
 El nieve es _____.
@@ -48,10 +48,10 @@ Ciento Cuarenta y Tres
 Cuatrocientos Setenta y Nueve
 Ochocientos Noventa y Uno
 Setecientos Sesenta y Ocho
-Tomorrow
+Time
 Kitten
 Quiet
-Phone
+Computer
 Painting
 Old
 Kitchen
@@ -68,16 +68,16 @@ Ellos son _____.//occupation
 ¿Como se llama el río más grande?
 Ella es _____. //occupation
 ¿Dónde está Chile?
-I paid
+You paid
 You traveled
 We fought
 They studied
 We climbed
-I wrote
+They wrote
 We swam
 You ran
 They yelled
-I watched
+We watched
 Dos Mil Quinientos Treinta y Nueve
 Siete Mil Cuatrocientos Veintiuno
 Diez Mil Nueve
@@ -89,11 +89,11 @@ Seis Mil
 Ocho Mil Ochenta y Dos
 Mil Novecientos Veinticinco
 Week
-Country
+State
 Century
 Age
 Hope
-Flood
+Thunder
 Lecture
 Skyscraper
 Story
@@ -121,7 +121,7 @@ He wakes them up
 Mil Millones
 Seiscientos Ochenta Mil Cuatrocientos Noventa y Cinco
 Soul
-Thief
+Printer
 ¿Cuantos estados tiene México?
 Se celebra Día de la Independencia de México en _____.
 ¿Cual de estos es un autor?

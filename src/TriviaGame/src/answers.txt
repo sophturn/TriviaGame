@@ -1,0 +1,130 @@
+10
+7
+20
+14
+46
+38
+62
+100
+73
+51
+perro
+zapato
+cama
+manzana
+casa
+gato
+cabeza
+libro
+sol
+escuela
+B
+A
+C
+D
+B
+C
+D
+A
+A
+C
+yo corro
+tu comes
+ella piensa
+ellos beben
+nosotros hablamos
+yo creo
+nosotros sabemos
+tu caminas
+ellos leyeron
+el estudia
+200
+604
+956
+397
+512
+1000
+143
+479
+891
+768
+tiempo
+gatito
+tranquilo
+computadora
+pintura
+viejo
+cocina
+ahora
+calor
+ayuda
+B
+C
+A
+B
+C
+D
+D
+C
+B
+A
+tu pagaste
+tu viajaste
+nosotros peleamos
+ellos estudiaron
+nosotros escalamos
+ellos escribieron
+nosotros nadamos
+tu corriste
+ellos gritaron
+nosotros miramos
+2539
+7421
+10009
+16947
+1000000
+7600
+12038
+6000
+8082
+1925
+semana
+estado
+siglo
+edad
+esperanza
+trueno
+conferencia
+rascacielo
+cuento
+sentimientos
+D
+B
+C
+A
+D
+A
+C
+D
+B
+A
+yo le ayudo
+te duermas
+yo lavo la cara
+nosotros nos ponemos los zapatos
+ella se levanta
+We go to bed
+tu te vistas
+el se sienta
+ellos se quitan los sombreros
+el los despierta
+1000000000
+680495
+alma
+impresora
+A
+C
+D
+ella hablaba
+es importante que recordamos
+sientate

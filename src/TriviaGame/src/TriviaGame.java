@@ -7,50 +7,95 @@ import java.awt.event.*;
 public class TriviaGame {
 	Scanner in = new Scanner(System.in);
 	Random rand = new Random();
-	ArrayList<Question> easyQuestions; // 0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
-	ArrayList<Question> mediumQuestions; // 0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
-	ArrayList<Question> hardQuestions; // 0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
-	ArrayList<Question> finalQuestions;
-	String asking;
+	int quesNum;
+	String asking, level, quesType;
+	static ArrayList<Question> easyQuestions = new ArrayList<Question>(40); // 0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
+	static ArrayList<Question> mediumQuestions = new ArrayList<Question>(40); // 0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
+	static ArrayList<Question> hardQuestions = new ArrayList<Question>(40); // 0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
+	static ArrayList<Question> finalQuestions = new ArrayList<Question>(10);
 
 	public static void main(String[] args) throws FileNotFoundException {
-//		/* Lines 1-40 hold easy questions
-//		 * Lines 41-80 hold medium questions
-//		 * Lines 81-120 hold hard questions
-//		 * Lines 121-130 hold final questions*/
-		File questions = new File("questions.txt");
-		Scanner quesScan = new Scanner(questions); //Why?
-		System.out.print(quesScan.next());
-		while(quesScan.hasNextLine()) {
-			for(int i=1; i<40;i++) {
-				//easyQuestions<i>.setQuestion(sc.nextLine());
+		/* Lines 1-40 hold easy questions
+		 * Lines 41-80 hold medium questions
+		 * Lines 81-120 hold hard questions
+		 * Lines 121-130 hold final questions*/
+		File questions = new File("C:\\Users\\sophi\\OneDrive\\Desktop\\Programming\\TriviaGame\\src\\questions.txt");
+		Scanner quesScan = new Scanner(questions);
+		// MAYBE USE ENHANCED FOR LOOP?
+		while (quesScan.hasNextLine()) {
+			for (int i = 0; i < 40; i++) {
+				if (i < 10) {
+					Question qi = new NumberQuestion();
+					easyQuestions.add(qi);
+				} else if (i >= 10 && i < 20) {
+					Question qi = new Question();
+					easyQuestions.add(qi);
+				} else if (i >= 20 && i < 30) {
+					Question qi = new MultipleChoiceQuestion();
+					easyQuestions.add(qi);
+				} else if (i >= 30) {
+					Question qi = new Question();
+					easyQuestions.add(qi);
+				}
+				easyQuestions.get(i).setQuestion(quesScan.nextLine());
 			}
-			for(int i=40; i<80;i++) {
-				//mediumQuestions<i>.setQuestion(sc.nextLine());
+			for (int i = 0; i < 40; i++) {
+				if (i < 10) {
+					Question qi = new NumberQuestion();
+					mediumQuestions.add(qi);
+				} else if (i >= 10 && i < 20) {
+					Question qi = new Question();
+					mediumQuestions.add(qi);
+				} else if (i >= 20 && i < 30) {
+					Question qi = new MultipleChoiceQuestion();
+					mediumQuestions.add(qi);
+				} else if (i >= 30) {
+					Question qi = new Question();
+					mediumQuestions.add(qi);
+				}
+				mediumQuestions.get(i).setQuestion(quesScan.nextLine());
 			}
-			for(int i=80; i<120;i++) {
-				//hardQuestions<i>.setQuestion(sc.nextLine());
-			} for(int i=120; i<130;i++) {
-				//finalQuestions<i>.setQuestion(sc.nextLine());
+			for (int i = 0; i < 40; i++) {
+				if (i < 10) {
+					Question qi = new NumberQuestion();
+					hardQuestions.add(qi);
+				} else if (i >= 10 && i < 20) {
+					Question qi = new Question();
+					hardQuestions.add(qi);
+				} else if (i >= 20 && i < 30) {
+					Question qi = new MultipleChoiceQuestion();
+					hardQuestions.add(qi);
+				} else if (i >= 30) {
+					Question qi = new Question();
+					hardQuestions.add(qi);
+				}
+				hardQuestions.get(i).setQuestion(quesScan.nextLine());
+			}
+			for (int i = 0; i < 10; i++) {
+				Question qi = new Question();
+				finalQuestions.add(qi);
+				finalQuestions.get(i).setQuestion(quesScan.nextLine());
 			}
 		}
-		//quesScan.close();
-		
-		File answers = new File("answers.txt");
+		quesScan.close();
+
+		File answers = new File("C:\\Users\\sophi\\OneDrive\\Desktop\\Programming\\TriviaGame\\src\\answers.txt");
 		Scanner ansScan = new Scanner(answers);
-		while(ansScan.hasNextLine()) {
-			for(int i=1; i<40;i++) {
-				//easyQuestions<i>.setAnswer(sc.nextLine());
+		while (ansScan.hasNextLine()) {
+			for (int i = 0; i < 40; i++) {
+				easyQuestions.get(i).setAnswer(ansScan.nextLine());
 			}
-			for(int i=40; i<80;i++) {
-				//mediumQuestions<i>.setQuestion(sc.nextLine());
+			for (int i = 0; i < 40; i++) {
+				mediumQuestions.get(i).setQuestion(ansScan.nextLine());
 			}
-			for(int i=80; i<120;i++) {
-				//hardQuestions<i>.setQuestion(sc.nextLine());
-			} for(int i=120; i<130;i++) {
-				//finalQuestions<i>.setQuestion(sc.nextLine());
+			for (int i = 0; i < 40; i++) {
+				hardQuestions.get(i).setQuestion(ansScan.nextLine());
+			}
+			for (int i = 0; i < 10; i++) {
+				finalQuestions.get(i).setQuestion(ansScan.nextLine());
 			}
 		}
+		ansScan.close();
 
 		// JFrame
 		JFrame frame = new JFrame();
@@ -58,22 +103,46 @@ public class TriviaGame {
 		frame.setTitle("Spanish Trivia Game");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		
-		//JPanel Instructions
+
+		// JPanel Instructions
 		JPanel instructions = new JPanel();
-		instructions.setBounds(0,0,600,600);
+		instructions.setBounds(0, 0, 600, 600);
 		instructions.setLayout(new BorderLayout());
-		
-		//JPanel Question
-		JPanel quest = new JPanel();
-		quest.setBounds(0,0,600,600);
-		quest.setLayout(new BorderLayout());
+		JLabel instruct = new JLabel("INSTRUCTIONS:");
+		instruct.setAlignmentX(500);
+		instruct.setAlignmentY(200);
+		JLabel instructWords = new JLabel(
+				"Choose a type of question from the oustide green ring. Answer this question, then choose another one.");
+		JLabel instructWCont = new JLabel("You will move in for correct answers and out for incorrect ones.");
+		JLabel instructNum = new JLabel(
+				"For Number Questions, type in the integer value with no punctuation (example: 698)");
+		JLabel instructMC = new JLabel(
+				"For Multiple Choice Questions, type in only the capitalized letter (example: C)");
+		JLabel instructVerb = new JLabel(
+				"For Verb Conjugation Questions, type in both the person and conjugated verb (example: yo creo)");
+		JLabel instructTrans = new JLabel(
+				"For Translation Questions, type in only the word, excluding 'el' or 'la' (example: lago)");
+		instructions.setBackground(Color.CYAN);
+		instructions.add(instruct);
+//		 instructions.add(instructWords, BorderLayout.CENTER);
+//		 instructions.add(instructWCont, BorderLayout.SOUTH);
+
+		frame.add(instructions);
+
+		// JPanel Question
+		JTextField questionField = new JTextField(100);
+		questionField.setText("testing");// set Text to question text.... figure out how
+//		JPanel quest = new JPanel();
+//		quest.setBounds(0, 0, 600, 600);
+//		quest.setLayout(new BorderLayout());
+		// quest.add();
+		frame.add(questionField);
 
 		// JPanel Board
 		JPanel base = new JPanel();
 		base.setBounds(0, 0, 600, 600);
 		base.setLayout(new GridLayout(6, 6));
-		frame.add(base);
+		// frame.add(base);
 		ButtonClickListener listener = new ButtonClickListener();
 		JButton[][] board = new JButton[6][6];
 		for (int i = 0; i < 6; i++) {
@@ -147,8 +216,10 @@ public class TriviaGame {
 //		frame.add(component);
 
 	}
-	
+
 	public String askQuestion() {
+		int quesNum = rand.nextInt(10);
+		
 		return asking;
 	}
 
