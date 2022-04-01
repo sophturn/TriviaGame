@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class TriviaGame {
 	Scanner in = new Scanner(System.in);
-	Random rand = new Random();
+	static Random rand = new Random();
 	int quesNum;
 	String asking, level, quesType;
 	static ArrayList<Question> easyQuestions = new ArrayList<Question>(40); // 0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
@@ -37,7 +37,7 @@ public class TriviaGame {
 					Question qi = new Question();
 					easyQuestions.add(qi);
 				}
-				easyQuestions.get(i).setQuestion(quesScan.nextLine());
+				easyQuestions.get(i).setQuestion(quesScan.nextLine(), "easy");
 			}
 			for (int i = 0; i < 40; i++) {
 				if (i < 10) {
@@ -53,7 +53,7 @@ public class TriviaGame {
 					Question qi = new Question();
 					mediumQuestions.add(qi);
 				}
-				mediumQuestions.get(i).setQuestion(quesScan.nextLine());
+				mediumQuestions.get(i).setQuestion(quesScan.nextLine(), "medium");
 			}
 			for (int i = 0; i < 40; i++) {
 				if (i < 10) {
@@ -69,12 +69,12 @@ public class TriviaGame {
 					Question qi = new Question();
 					hardQuestions.add(qi);
 				}
-				hardQuestions.get(i).setQuestion(quesScan.nextLine());
+				hardQuestions.get(i).setQuestion(quesScan.nextLine(), "hard");
 			}
 			for (int i = 0; i < 10; i++) {
 				Question qi = new Question();
 				finalQuestions.add(qi);
-				finalQuestions.get(i).setQuestion(quesScan.nextLine());
+				finalQuestions.get(i).setQuestion(quesScan.nextLine(), "final");
 			}
 		}
 		quesScan.close();
@@ -86,13 +86,13 @@ public class TriviaGame {
 				easyQuestions.get(i).setAnswer(ansScan.nextLine());
 			}
 			for (int i = 0; i < 40; i++) {
-				mediumQuestions.get(i).setQuestion(ansScan.nextLine());
+				mediumQuestions.get(i).setAnswer(ansScan.nextLine());
 			}
 			for (int i = 0; i < 40; i++) {
-				hardQuestions.get(i).setQuestion(ansScan.nextLine());
+				hardQuestions.get(i).setAnswer(ansScan.nextLine());
 			}
 			for (int i = 0; i < 10; i++) {
-				finalQuestions.get(i).setQuestion(ansScan.nextLine());
+				finalQuestions.get(i).setAnswer(ansScan.nextLine());
 			}
 		}
 		ansScan.close();
@@ -119,9 +119,9 @@ public class TriviaGame {
 		JLabel instructMC = new JLabel(
 				"For Multiple Choice Questions, type in only the capitalized letter (example: C)");
 		JLabel instructVerb = new JLabel(
-				"For Verb Conjugation Questions, type in both the person and conjugated verb (example: yo creo)");
+				"For Verb Conjugation Questions, type in both the person and conjugated verb with no capitalization (example: yo creo)");
 		JLabel instructTrans = new JLabel(
-				"For Translation Questions, type in only the word, excluding 'el' or 'la' (example: lago)");
+				"For Translation Questions, type in only the word with no capitalization (example: lago)");
 		instructions.setBackground(Color.CYAN);
 		instructions.add(instruct);
 //		 instructions.add(instructWords, BorderLayout.CENTER);
@@ -136,38 +136,45 @@ public class TriviaGame {
 //		quest.setLayout(new BorderLayout());
 		// quest.add();
 		frame.add(questionField);
+		
+		//Question Take Two
+		JTextField ques = new JTextField();
+		ques.setText("Question: ");
+		frame.add(ques, BorderLayout.NORTH);
 
 		// JPanel Board
 		JPanel base = new JPanel();
 		base.setBounds(0, 0, 600, 600);
 		base.setLayout(new GridLayout(6, 6));
-		frame.add(base);
-		ButtonClickListener easyListener = new ButtonClickListener();
-		ButtonClickListener mediumListener = new ButtonClickListener();
-		ButtonClickListener hardListener = new ButtonClickListener();
+		frame.add(base, BorderLayout.CENTER);
+		NumButton numListener = new NumButton();
+		MCButton mCListener = new MCButton();
+		TransButton transListener = new TransButton();
+		VerbButton verbListener = new VerbButton();
 		JButton[][] board = new JButton[6][6];
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
 				if (i == 0 || j == 0 || i == 5 || j == 5) {
 					board[i][j] = new JButton();
 					board[i][j].setBackground(Color.GREEN);
-					board[i][j].addActionListener(easyListener);
+					//board[i][j].addActionListener(easyListener);
 					base.add(board[i][j]);
 				} else if (i == 1 || j == 1 || i == 4 || j == 4) {
 					board[i][j] = new JButton();
 					board[i][j].setBackground(Color.YELLOW);
-					board[i][j].addActionListener(mediumListener);
+					//board[i][j].addActionListener(mediumListener);
 					base.add(board[i][j]);
 				} else if (i == 2 || j == 2 || i == 3) {
 					board[i][j] = new JButton();
 					board[i][j].setBackground(Color.RED);
-					board[i][j].addActionListener(hardListener);
+					//board[i][j].addActionListener(hardListener);
 					base.add(board[i][j]);
 				}
 			}
 		}
 		// Setting text for the Buttons
 		board[0][0].setText("Translate");
+		board[0][0].addActionListener(transListener);
 		board[4][0].setText("Translate");
 		board[0][4].setText("Translate");
 		board[5][3].setText("Translate");
@@ -177,6 +184,7 @@ public class TriviaGame {
 		board[4][4].setText("Translate");
 		board[2][2].setText("Translate");
 		board[1][0].setText("Number");
+		board[1][0].addActionListener(numListener);
 		board[5][0].setText("Number");
 		board[0][3].setText("Number");
 		board[5][4].setText("Number");
@@ -204,6 +212,10 @@ public class TriviaGame {
 		board[4][1].setText("Choice");
 		board[4][5].setText("Choice");
 		board[5][2].setText("Choice");
+		
+		int questNum = rand.nextInt(10);
+		//if() {} - button clicked type
+		Question current = new Question();
 
 //		JPanel fin = new JPanel();
 //		fin.setBounds(350, 350, 100, 100);
@@ -218,9 +230,9 @@ public class TriviaGame {
 
 	}
 
-	public String askQuestion() {
-		int quesNum = rand.nextInt(10);
-		return asking;
-	}
+//	public String askQuestion() {
+//		int quesNum = rand.nextInt(10);
+//		return asking;
+//	}
 
 }

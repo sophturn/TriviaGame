@@ -2,7 +2,7 @@
 
 public class Question {
 	boolean correct = false;
-	static String answer, question, correctAnswer;
+	static String answer, question, correctAnswer, level;
 	public Question() {}
 	
 	public static String display() {
@@ -13,8 +13,13 @@ public class Question {
 		return question;
 	}
 	
-	public void setQuestion(String desc) {
+	public void setQuestion(String desc, String lv) {
 		question = desc;
+		level = lv;
+	}
+	
+	public static String getLevel() {
+		return level;
 	}
 	
 	public void setAnswer(String answ) {

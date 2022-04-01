@@ -1,19 +1,18 @@
 import java.awt.event.*;
 import java.util.Random;
 
-public class ButtonClickListener implements ActionListener {
+public class TransButton implements ActionListener {
+	Random rand = new Random();
 	String lvl;
 	public void actionPerformed(ActionEvent event) {
 		lvl = Question.getLevel();
-		System.out.println(lvl);
-		Question.display();
-		
+		questionReturn();
 	}
 
-//	public int questionReturn(int numb) {
-//		int questionNumber = numb;
-//		return questionNumber;
-//	}
+	public int questionReturn() {
+		int questionNumber = rand.nextInt(10, 20);
+		return questionNumber;
+	}
 	
 //	public void setLevel(String lv) {
 //		level = lv;
