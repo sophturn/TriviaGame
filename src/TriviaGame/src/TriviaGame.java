@@ -59,11 +59,10 @@ public class TriviaGame {
 				}
 				hardQuestions.get(i).setQuestion(quesScan.nextLine(), "hard");
 			}
-//			for (int i = 0; i < 10; i++) {
-//				Question qi = new Question();
-//				finalQuestions.add(new Question);
-//				finalQuestions.get(i).setQuestion(quesScan.nextLine(), "final");
-//			}
+			for (int i = 0; i < 10; i++) {
+				finalQuestions.add(new Question());
+				finalQuestions.get(i).setQuestion(quesScan.nextLine(), "final");
+			}
 		}
 		quesScan.close();
 
@@ -211,12 +210,16 @@ public class TriviaGame {
 	public static void enterClicked() {
 		boolean correct;
 		if(level.equals("easy")) {
+			easyQuestions.get(quesNum).Response(ques.getText());
 			correct = easyQuestions.get(quesNum).checkAnswer();
 		} else if(level.equals("medium")) {
+			mediumQuestions.get(quesNum).Response(ques.getText());
 			correct = mediumQuestions.get(quesNum).checkAnswer();
 		} else if (level.equals("hard")) {
+			hardQuestions.get(quesNum).Response(ques.getText());
 			correct = hardQuestions.get(quesNum).checkAnswer();
 		} else {
+			finalQuestions.get(quesNum).Response(ques.getText());
 			correct = finalQuestions.get(quesNum).checkAnswer();
 		}
 		if(correct) {
