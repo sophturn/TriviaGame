@@ -1,8 +1,8 @@
 //Encompasses both Translation and Conjugation questions.
 
 public class Question {
-	boolean correct = false;
-	static String answer, question, correctAnswer, level;
+	protected boolean correct = false;
+	protected static String answer, question, correctAnswer, level;
 	public Question() {}
 	
 	public static String display() {

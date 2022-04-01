@@ -8,11 +8,12 @@ public class TriviaGame {
 	Scanner in = new Scanner(System.in);
 	static Random rand = new Random();
 	static int quesNum;
-	String asking, level, quesType;
+	static String asking, level, quesType, response, qTBA;
 	static ArrayList<Question> easyQuestions = new ArrayList<Question>(40); // 0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
 	static ArrayList<Question> mediumQuestions = new ArrayList<Question>(40); // 0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
 	static ArrayList<Question> hardQuestions = new ArrayList<Question>(40); // 0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
 	static ArrayList<Question> finalQuestions = new ArrayList<Question>(10);
+	static JTextField ques = new JTextField();
 
 	public static void main(String[] args) throws FileNotFoundException {
 		/* Lines 1-40 hold easy questions
@@ -21,7 +22,6 @@ public class TriviaGame {
 		 * Lines 121-130 hold final questions*/
 		File questions = new File("C:\\Users\\sophi\\OneDrive\\Desktop\\Programming\\TriviaGame\\src\\questions.txt");
 		Scanner quesScan = new Scanner(questions);
-		// MAYBE USE ENHANCED FOR LOOP?
 		while (quesScan.hasNextLine()) {
 			for (int i = 0; i < 40; i++) {
 				if (i < 10) {
@@ -127,19 +127,8 @@ public class TriviaGame {
 //		 instructions.add(instructWords, BorderLayout.CENTER);
 //		 instructions.add(instructWCont, BorderLayout.SOUTH);
 		//frame.add(instructions);
-
-		// JPanel Question
-		JTextField questionField = new JTextField(100);
-		questionField.setText("testing");// set Text to question text.... figure out how
-//		JPanel quest = new JPanel();
-//		quest.setBounds(0, 0, 600, 600);
-//		quest.setLayout(new BorderLayout());
-		// quest.add();
-		frame.add(questionField);
 		
-		//Question Take Two
-		JTextField ques = new JTextField();
-		ques.setText("Question: ");
+		//Question Field
 		frame.add(ques, BorderLayout.NORTH);
 
 		// JPanel Board
@@ -147,34 +136,32 @@ public class TriviaGame {
 		base.setBounds(0, 0, 600, 600);
 		base.setLayout(new GridLayout(6, 6));
 		frame.add(base, BorderLayout.CENTER);
-		NumButton numListener = new NumButton();
-		MCButton mCListener = new MCButton();
-		TransButton transListener = new TransButton();
-		VerbButton verbListener = new VerbButton();
+		EasyButtonListener easyListener = new EasyButtonListener();
+		MediumButtonListener mediumListener = new MediumButtonListener();
+		HardButtonListener hardListener = new HardButtonListener();
 		JButton[][] board = new JButton[6][6];
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
 				if (i == 0 || j == 0 || i == 5 || j == 5) {
 					board[i][j] = new JButton();
 					board[i][j].setBackground(Color.GREEN);
-					//board[i][j].addActionListener(easyListener);
+					board[i][j].addActionListener(easyListener);
 					base.add(board[i][j]);
 				} else if (i == 1 || j == 1 || i == 4 || j == 4) {
 					board[i][j] = new JButton();
 					board[i][j].setBackground(Color.YELLOW);
-					//board[i][j].addActionListener(mediumListener);
+					board[i][j].addActionListener(mediumListener);
 					base.add(board[i][j]);
 				} else if (i == 2 || j == 2 || i == 3) {
 					board[i][j] = new JButton();
 					board[i][j].setBackground(Color.RED);
-					//board[i][j].addActionListener(hardListener);
+					board[i][j].addActionListener(hardListener);
 					base.add(board[i][j]);
 				}
 			}
 		}
 		// Setting text for the Buttons
 		board[0][0].setText("Translate");
-		board[0][0].addActionListener(transListener);
 		board[4][0].setText("Translate");
 		board[0][4].setText("Translate");
 		board[5][3].setText("Translate");
@@ -184,7 +171,6 @@ public class TriviaGame {
 		board[4][4].setText("Translate");
 		board[2][2].setText("Translate");
 		board[1][0].setText("Number");
-		board[1][0].addActionListener(numListener);
 		board[5][0].setText("Number");
 		board[0][3].setText("Number");
 		board[5][4].setText("Number");
@@ -212,19 +198,25 @@ public class TriviaGame {
 		board[4][1].setText("Choice");
 		board[4][5].setText("Choice");
 		board[5][2].setText("Choice");
-		
-		int questNum = rand.nextInt(10);
-		//if() {} - button clicked type
-		Question current = new Question();
-
-//		JPanel fin = new JPanel();
-//		fin.setBounds(350, 350, 100, 100);
-//		fin.setLayout(new GridLayout(1, 1));
-//		JButton end = new JButton("FINAL");
-//		end.setBounds(350, 350, 100, 100);
-//		end.setBackground(Color.PINK);
-//		fin.add(end);
 
 	}
+	
+	public static void setQuestion(int number, String l, String t) {
+		if(l.equals("easy")) {
+			qTBA = easyQuestions.get(number).display();
+		} else if(l.equals("medium")) {
+			qTBA = mediumQuestions.get(number).display();
+		} else if (l.equals("hard")) {
+			qTBA = hardQuestions.get(number).display();
+		} else {
+			qTBA = finalQuestions.get(number).display();
+		}
+		addQuestion(qTBA);
+	}
+	
+	public static void addQuestion(String qA) {
+		ques.setText("Question: "+qA);
+	}
+	
 
 }
