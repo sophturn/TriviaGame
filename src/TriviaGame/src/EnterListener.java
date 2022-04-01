@@ -7,7 +7,7 @@ public class EnterListener implements KeyListener {
 		String key = KeyStroke.getKeyStrokeForEvent(event).toString();
 		key = key.replace("pressed ", "");
 		if(key.equals("ENTER")) {
-			TriviaGame.board[][].checkAnswer();
+			TriviaGame.enterClicked();
 		}
 	}
 

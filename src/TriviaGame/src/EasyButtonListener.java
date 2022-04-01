@@ -19,14 +19,4 @@ public class EasyButtonListener implements ActionListener {
 		
 	}
 
-//	public int questionReturn(int numb) {
-//		int questionNumber = numb;
-//		return questionNumber;
-//	}
-	
-//	public void setLevel(String lv) {
-//		level = lv;
-//		if(level.equals("easy")) {}
-//	}
-
 }

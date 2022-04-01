@@ -25,57 +25,45 @@ public class TriviaGame {
 		while (quesScan.hasNextLine()) {
 			for (int i = 0; i < 40; i++) {
 				if (i < 10) {
-					Question qi = new NumberQuestion();
-					easyQuestions.add(qi);
+					easyQuestions.add(new NumberQuestion());
 				} else if (i >= 10 && i < 20) {
-					Question qi = new Question();
-					easyQuestions.add(qi);
+					easyQuestions.add(new Question());
 				} else if (i >= 20 && i < 30) {
-					Question qi = new MultipleChoiceQuestion();
-					easyQuestions.add(qi);
+					easyQuestions.add(new MultipleChoiceQuestion());
 				} else if (i >= 30) {
-					Question qi = new Question();
-					easyQuestions.add(qi);
+					easyQuestions.add(new Question());
 				}
 				easyQuestions.get(i).setQuestion(quesScan.nextLine(), "easy");
 			}
 			for (int i = 0; i < 40; i++) {
 				if (i < 10) {
-					Question qi = new NumberQuestion();
-					mediumQuestions.add(qi);
+					mediumQuestions.add(new NumberQuestion());
 				} else if (i >= 10 && i < 20) {
-					Question qi = new Question();
-					mediumQuestions.add(qi);
+					mediumQuestions.add(new Question());
 				} else if (i >= 20 && i < 30) {
-					Question qi = new MultipleChoiceQuestion();
-					mediumQuestions.add(qi);
+					mediumQuestions.add(new MultipleChoiceQuestion());
 				} else if (i >= 30) {
-					Question qi = new Question();
-					mediumQuestions.add(qi);
+					mediumQuestions.add(new Question());
 				}
 				mediumQuestions.get(i).setQuestion(quesScan.nextLine(), "medium");
 			}
 			for (int i = 0; i < 40; i++) {
 				if (i < 10) {
-					Question qi = new NumberQuestion();
-					hardQuestions.add(qi);
+					hardQuestions.add(new NumberQuestion());
 				} else if (i >= 10 && i < 20) {
-					Question qi = new Question();
-					hardQuestions.add(qi);
+					hardQuestions.add(new Question());
 				} else if (i >= 20 && i < 30) {
-					Question qi = new MultipleChoiceQuestion();
-					hardQuestions.add(qi);
+					hardQuestions.add(new MultipleChoiceQuestion());
 				} else if (i >= 30) {
-					Question qi = new Question();
-					hardQuestions.add(qi);
+					hardQuestions.add(new Question());
 				}
 				hardQuestions.get(i).setQuestion(quesScan.nextLine(), "hard");
 			}
-			for (int i = 0; i < 10; i++) {
-				Question qi = new Question();
-				finalQuestions.add(qi);
-				finalQuestions.get(i).setQuestion(quesScan.nextLine(), "final");
-			}
+//			for (int i = 0; i < 10; i++) {
+//				Question qi = new Question();
+//				finalQuestions.add(new Question);
+//				finalQuestions.get(i).setQuestion(quesScan.nextLine(), "final");
+//			}
 		}
 		quesScan.close();
 
@@ -202,6 +190,8 @@ public class TriviaGame {
 	}
 	
 	public static void setQuestion(int number, String l, String t) {
+		quesNum = number;
+		level = l;
 		if(l.equals("easy")) {
 			qTBA = easyQuestions.get(number).display();
 		} else if(l.equals("medium")) {
@@ -216,6 +206,24 @@ public class TriviaGame {
 	
 	public static void addQuestion(String qA) {
 		ques.setText("Question: "+qA);
+	}
+	
+	public static void enterClicked() {
+		boolean correct;
+		if(level.equals("easy")) {
+			correct = easyQuestions.get(quesNum).checkAnswer();
+		} else if(level.equals("medium")) {
+			correct = mediumQuestions.get(quesNum).checkAnswer();
+		} else if (level.equals("hard")) {
+			correct = hardQuestions.get(quesNum).checkAnswer();
+		} else {
+			correct = finalQuestions.get(quesNum).checkAnswer();
+		}
+		if(correct) {
+			ques.setBackground(Color.GREEN);
+		} else if(!correct) {
+			ques.setBackground(Color.RED);
+		}
 	}
 	
 
