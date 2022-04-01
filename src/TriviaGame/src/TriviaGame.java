@@ -7,7 +7,7 @@ import java.awt.event.*;
 public class TriviaGame {
 	Scanner in = new Scanner(System.in);
 	static Random rand = new Random();
-	int quesNum;
+	static int quesNum;
 	String asking, level, quesType;
 	static ArrayList<Question> easyQuestions = new ArrayList<Question>(40); // 0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
 	static ArrayList<Question> mediumQuestions = new ArrayList<Question>(40); // 0-9 Number, 10-19 Translation, 20-29 Multiple Choice, 30-39 Conjugation
@@ -225,14 +225,6 @@ public class TriviaGame {
 //		end.setBackground(Color.PINK);
 //		fin.add(end);
 
-//		boardComponent component = new boardComponent();
-//		frame.add(component);
-
 	}
-
-//	public String askQuestion() {
-//		int quesNum = rand.nextInt(10);
-//		return asking;
-//	}
 
 }
